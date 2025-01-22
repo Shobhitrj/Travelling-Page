@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelWorld - Tourism Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .nav-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1500x600') no-repeat center center/cover;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            background-color: #3498db;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: #2980b9;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .destination-grid,
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination,
+        .tour {
+            background-color: #f1f1f1;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .destination:hover,
+        .tour:hover {
+            transform: scale(1.05);
+        }
+
+        .destination img,
+        .tour img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .destination h3,
+        .tour h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .destination p,
+        .tour p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-img {
+            flex: 1;
+            background: url('https://via.placeholder.com/600x400') no-repeat center center/cover;
+            height: 300px;
+            border-radius: 8px;
+        }
+
+        .about-text {
+            flex: 2;
+            font-size: 1.2rem;
+            color: #34495e;
+        }
+        .view-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+.destination,
+.tour {
+    background-color: #f1f1f1;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;  /* Make it a flex container */
+    flex-direction: column;  /* Arrange children in a column */
+    justify-content: space-between;  /* Spread out content with space between */
+    height: 100%;  /* Ensure the container fills the available height */
+    transition: transform 0.3s ease;
+}
+
+.destination:hover,
+.tour:hover {
+    transform: scale(1.05);
+}
+
+.destination img,
+.tour img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.destination h3,
+.tour h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.destination p,
+.tour p {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+.view-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: auto;  /* Push the button to the bottom */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+.hero-btn {
+    background-color: #3498db;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: #2980b9;
+    animation: pulse 1s infinite; /* Add pulse animation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Slightly enlarges */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.contact-form input,
+.contact-form textarea {
+    width: 50%;  
+    min-width: 250px;  
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    background-color: #3498db;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.contact-form button:hover {
+    background-color: #2980b9;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">TravelWorld</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="Book.html">
+                <button class="nav-btn">Book Now</button>
+            </a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1 style="color: #3498db;">Explore the World with TravelWorld</h1>
+        
+        <button class="hero-btn">Start Your Journey</button>
+    </section>
+
+    <section id="destinations">
+        <h2>Top Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination">
+                <img src="https://i.pinimg.com/736x/03/e4/88/03e4889c5572070236062a8d6f61e012.jpg" alt="Destination 1">
+                <h3>Paris, France</h3>
+                <p>The city of lights, romance, and rich culture. Experience the Eiffel Tower, the Louvre, and delicious French cuisine.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="destination">
+                <img src="https://i.pinimg.com/474x/e9/dd/ad/e9ddad2f8c3107df9cbf684f5ddda86a.jpg" alt="Destination 2">
+                <h3>Bali, Indonesia</h3>
+                <p>Beautiful beaches, tranquil temples, and lush landscapes. Bali is the perfect blend of relaxation and adventure.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="destination">
+                <img src="https://i.pinimg.com/236x/df/a7/ab/dfa7abd94dc7958c70c590dc2ff327a0.jpg" alt="Destination 3">
+                <h3>Tokyo, Japan</h3>
+                <p>A vibrant mix of tradition and modernity. Explore ancient temples, futuristic technology, and amazing street food.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="destination">
+              <img src="https://i.pinimg.com/736x/dc/b0/64/dcb064d2adb85ca6cc82a7be246b7c5e.jpg" alt="Destination 3">
+              <h3>Delhi,India</h3>
+              <p>Delhi, the capital city of India, is a captivating destination that seamlessly blends the rich cultural heritage of ancient India with the vibrancy and energy of modern urban life.</p>
+              <button class="view-btn">View More</button>
+          </div>
+          <div class="destination">
+            <img src="https://i.pinimg.com/736x/03/e4/88/03e4889c5572070236062a8d6f61e012.jpg" alt="Destination 1">
+            <h3>Paris, France</h3>
+            <p>The city of lights, romance, and rich culture. Experience the Eiffel Tower, the Louvre, and delicious French cuisine.</p>
+            <button class="view-btn">View More</button>
+        </div>
+        <div class="destination">
+            <img src="https://i.pinimg.com/736x/03/e4/88/03e4889c5572070236062a8d6f61e012.jpg" alt="Destination 1">
+            <h3>Paris, France</h3>
+            <p>The city of lights, romance, and rich culture. Experience the Eiffel Tower, the Louvre, and delicious French cuisine.</p>
+            <button class="view-btn">View More</button>
+        </div>
+          
+        </div>
+    </section>
+
+    <section id="tours">
+        <h2>Popular Tours</h2>
+        <div class="tour-grid">
+            <div class="tour">
+                <img src="https://i.pinimg.com/236x/af/22/a1/af22a1c1b7912fe1d2cf3d68d93e6381.jpg" alt="Tour 1">
+                <h3>European Highlights</h3>
+                <p>Explore the iconic cities of Europe, from Paris to Rome. Enjoy the culture, architecture, and history in every corner.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="tour">
+                <img src="https://i.pinimg.com/236x/79/30/9e/79309e29e0c77b2e94edbb8209aa2287.jpg" alt="Tour 2">
+                <h3>Asian Adventure</h3>
+                <p>Discover the wonders of Asia with a guided tour. Visit bustling markets, serene temples, and enjoy exotic food.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="tour">
+                <img src="https://i.pinimg.com/236x/b3/76/3e/b3763e750e3d92c4b677edba2ebb5c64.jpg" alt="Tour 3">
+                <h3>South American Expedition</h3>
+                <p>Embark on a thrilling journey through South America. From the Andes to the Amazon, experience the wild beauty of the continent.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="tour">
+                <img src="https://i.pinimg.com/236x/42/9e/98/429e9814d7fdb4746c4c8efc670ad333.jpg" alt="Tour 3">
+                <h3>African Safari Experience</h3>
+                <p>Dive into the wild with a safari tour in Africa. Witness the “Big Five” animals—lions, elephants, buffaloes, leopards, and rhinos—in their natural habitats, along with breathtaking landscapes.</p>
+                <button class="view-btn">View More</button>
+            </div>
+            <div class="tour">
+                <img src="https://i.pinimg.com/236x/af/96/29/af96294b88a85459bfb8bfd4acdd65e3.jpg" alt="Tour 3">
+                <h3>Australian Outback & Great Barrier Reef Tour</h3>
+                <p>Explore the natural wonders of Australia with a visit to the iconic Great Barrier Reef and a journey through the Outback</p>
+                <button class="view-btn">View More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-content" style="display: flex; align-items: center;">
+            <div class="about-img" style="margin-right: 20px;">
+                <img src="https://i.pinimg.com/236x/5d/13/28/5d132817b4824b2784e7a0547a19820e.jpg" alt="TravelWorld" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            </div>
+            <div class="about-text">
+                <p style="text-decoration: underline; font-size: 1.2em; color: #333;">TravelWorld is your ultimate travel companion. We offer a wide range of tailored travel experiences designed to match your interests, budget, and schedule. Whether you're a solo traveler, couple, or group, we help you create unforgettable memories.</p>
+                <p style="font-style: italic; font-size: 1.1em; color: #666;">With years of expertise in the tourism industry, we provide curated itineraries, local insights, and the best deals on accommodations, flights, and tours. Our goal is to make travel easier, more affordable, and, most importantly, enjoyable!</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need assistance planning your trip, feel free to reach out. We're here to help!</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TravelWorld. All Rights Reserved.</p>
+        <p>Follow us on <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+    </footer>
+</body>
+</html>
